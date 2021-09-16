@@ -44,8 +44,14 @@ const BeetSay = msg => {
         case 'brazil':
             playmusic('msg to brazil.mp3')
             break
+        case 'red':
+            playmusic('spell red uncut.mp3')
+            break
         case 'liver':
             playmusic('liver.mp3')
+            break
+        case 'ingerland':
+            playmusic('ingerland.mp3')
             break;
         default:
             return
@@ -71,7 +77,7 @@ client.on('message', msg =>{
             commands are:
             -spam,
             hows 6ft,
-            -beetsay [carrots, liver, spanish, height, 6ft, bmw, 6ft, 1-1, brazil]           
+            -beetsay [carrots, liver, spanish, height, ingerland, bmw, 6ft, 1-1, brazil]           
             `)
             break
         case '-deadbeet':
