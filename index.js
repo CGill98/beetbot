@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const { playSong, skipSong } = require('./youtube/index');
 require('dotenv').config();
 
 client.login(process.env.CLIENT_LOGIN);
@@ -60,9 +61,35 @@ const BeetSay = msg => {
             return;
     }
 };
+/*
+const queue = new Map();
+
+const playSong = async msg => {
+    const link = msg.content.split(' ')[1];
+    const songInfo = await ytdl.getInfo(link);
+    //console.log(songInfo);
+    const { title, videoId } = songInfo.player_response.videoDetails;
+    const song = {
+        title: songInfo.title,
+        url: songInfo.video_url,
+    };
+    msg.reply(`playing ${title}`);
+    //return;
+
+    const { channel: voiceChannel } = msg.member.voice;
+
+    try {
+        const connection = await voiceChannel.join();
+        connection.play(ytdl(videoId));
+    } catch (e) {
+        console.log(e);
+    }
+};
+*/
 
 client.on('message', msg => {
-    console.log(msg.content);
+    // console.log(msg);
+    // console.log('message');
     //msg.member.voice.channel.join()
     const cmdType = msg.content.split(' ')[0];
 
@@ -80,6 +107,8 @@ client.on('message', msg => {
             -spam,
             hows 6ft,
             -beetsay [carrots, liver, spanish, height, ingerland, bmw, 6ft, 1-1, brazil]           
+            -bplay <link>
+            -bskip
             `);
             break;
         case '-deadbeet':
@@ -92,6 +121,13 @@ client.on('message', msg => {
             break;
         case '-byebeet':
             msg.member.voice.channel.leave();
+            break;
+        // case '-bplay':
+        //     playSong(msg);
+        //     break;
+        // case '-bskip':
+        //     skipSong(msg);
+        //     break;
         default:
             return;
     }
